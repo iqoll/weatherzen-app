@@ -1,7 +1,5 @@
-import openWeather from './assets/openweather.png'
 import './styles/index.css'
-console.log(123)
+import logoImg from'./assets/weather-icons/03d.png'
 
-const openWeatherImg = document.getElementById('openWeatherImg') as HTMLImageElement
-openWeatherImg.src= openWeather
-
+const logo = document.getElementById('logo') as HTMLImageElement
+logo.src = logoImg

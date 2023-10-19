@@ -4,11 +4,51 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= htmlWebpackPlugin.options.title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
-  <h2 class="text-white bg-yellow-300 text-4xl p-10">WeatherZen</h2>
-  <p>hello :V</p>
-  <p></p>
-  <img id="openWeatherImg">
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="#" class="flex space-x-1 items-center">
+        <img id="logo" alt="logo" class="w-16"/>
+        <p class="text-4xl">WeatherZen</p>
+      </a>
+
+      <!-- Search section -->
+      <div class="search-view" data-search-view>
+        <!-- Search input -->
+        <div class="search-wrapper">
+          <input type="search" name="search" placeholder="Search city..." autocomplete="off" class="search-field" data-search-field>
+
+          <span class="m-icon">search</span>
+        
+          <button aria-label="close search" data-search-toggler>
+            <span class="m-icon">arrow_back</span>
+          </button>
+        </div>
+        
+        <!-- Search result -->
+        <div data-search-result>
+          <ul data-search-list>
+            <li>
+              <span class="m-icon">location_on</span>
+              <div>
+                <p class="item-title">London</p>
+                <p class="item-subtitle">State of London, GB</p>
+              </div>
+              <a href="#" data-search-toggler>
+                <span class="m-icon">my_location</span>
+                <span>Current location</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
 </body>
 </html>

@@ -1,3 +1,94 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* RESET STYLE */
+
+*,
+*::before,
+*::after {
+	@apply m-0 p-0 box-border;
+}
+
+li {
+	@apply list-none;
+}
+
+a,
+img,
+span,
+input,
+button {
+	@apply block;
+}
+
+a {
+	@apply text-inherit no-underline;
+}
+
+img {
+	@apply h-auto;
+}
+
+input,
+button {
+	@apply text-inherit;
+	background: none;
+	border: none;
+	font: inherit;
+}
+
+input {
+	@apply w-full;
+}
+
+button {
+	@apply cursor-pointer;
+}
+
+sub {
+	@apply align-baseline;
+}
+
+sup {
+	@apply align-top;
+}
+
+sup,
+sub {
+	@apply text-xs;
+}
+
+html {
+	@apply font-sans text-sm scroll-smooth;
+}
+
+body {
+	@apply bg-background text-onBackground text-sm overflow-hidden;
+}
+
+:focus-visible {
+	@apply outline outline-white outline-2 outline-offset-2;
+}
+
+::selection {
+	@apply bg-whiteAlpha8;
+}
+
+::webkit-scrollbar {
+	@apply w-2 h-2;
+}
+
+::webkit-scrollbar-thumb {
+	@apply bg-whiteAlpha8 rounded-radiusPill;
+}
+
+.m-icon {
+	@apply font-materialSymbol font-normal text-lg tracking-normal normal-case whitespace-nowrap overflow-hidden;
+	direction: ltr;
+	font-feature-settings: 'liga';
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+	height: 1em;
+	width: 1em;
+}
