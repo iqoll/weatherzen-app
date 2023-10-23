@@ -38,8 +38,13 @@ module.exports = {
         gradient2: 'linear-gradient(180deg, hsla(260, 5%, 12%, 0) 0%, hsla(260, 5%, 12%, 0.8) 65%, hsl(260, 5%, 12%) 100%)'
       },
       borderRadius: {
-        radiusPill: '500px'
-      }
+        radiusPill: '500px',
+        inherit: 'inherit'
+      },
+      boxShadow: {
+        shadow1: '0px 1px 3px hsla(0, 0%, 0%, 0.5)',
+        shadow2: '0px 3px 6px hsla(0, 0%, 0%, 0.4)'
+      },
     },
   },
   variants: {

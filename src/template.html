@@ -12,21 +12,22 @@
 <body>
   <!-- Header -->
   <header>
-    <div class="container">
+    <div class="flex justify-between items-center px-4 py-2">
       <a href="#" class="flex space-x-1 items-center">
         <img id="logo" alt="logo" class="w-16"/>
         <p class="text-4xl">WeatherZen</p>
       </a>
 
       <!-- Search section -->
-      <div class="search-view" data-search-view>
+      <!-- Search View -->
+      <div class="active fixed top-0 left-0 w-full sm:h-screen bg-surface text-onSurface clip-path opacity-0 invisible z-10" id="search-view" data-search-view>
         <!-- Search input -->
-        <div class="search-wrapper">
+        <div class="loading relative border-b-2 border-solid border-outline"> <!-- Search Wrapper -->
           <input type="search" name="search" placeholder="Search city..." autocomplete="off" class="search-field" data-search-field>
 
           <span class="m-icon">search</span>
         
-          <button aria-label="close search" data-search-toggler>
+          <button class="icon-btn has-state" aria-label="close search" data-search-toggler>
             <span class="m-icon">arrow_back</span>
           </button>
         </div>
@@ -40,13 +41,21 @@
                 <p class="item-title">London</p>
                 <p class="item-subtitle">State of London, GB</p>
               </div>
-              <a href="#" data-search-toggler>
-                <span class="m-icon">my_location</span>
-                <span>Current location</span>
-              </a>
+              <a href="#" data-search-toggler></a>
             </li>
           </ul>
         </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button class="icon-btn has-state" aria-label="open search" data-search-toggler>
+          <span class="m-icon">search</span>
+        </button>
+
+        <a href="#/current-location" class="btn-primary has-state" data-current-location-btn>
+          <span class="m-icon font-semibold">my_location</span>
+          <span class="font-semibold hidden">Current location</span>
+        </a>
       </div>
     </div>
   </header>

@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* RESET STYLE */
+/*-----------------------------------*\
+  #RESET STYLE
+\*-----------------------------------*/
 
 *,
 *::before,
@@ -84,11 +86,92 @@ body {
 }
 
 .m-icon {
-	@apply font-materialSymbol font-normal text-lg tracking-normal normal-case whitespace-nowrap overflow-hidden;
+	@apply font-materialSymbol font-normal tracking-normal normal-case whitespace-nowrap overflow-hidden;
+	font-size: 2.4rem;
+	line-height: 1;
 	direction: ltr;
 	font-feature-settings: 'liga';
 	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
 	height: 1em;
 	width: 1em;
+}
+
+/*-----------------------------------*\
+  #REUSED STYLE
+\*-----------------------------------*/
+
+.container {
+	@apply max-w-[1600px] w-full me-auto ms-auto p-4;
+}
+
+.icon-btn {
+	@apply bg-whiteAlpha8 w-12 h-12 grid place-items-center rounded-full;
+}
+
+.has-state {
+	@apply relative;
+}
+
+.has-state:hover {
+	@apply shadow-shadow1;
+}
+
+.has-state:is(:focus, :focus-visible) {
+	@apply shadow-none;
+}
+
+.has-state::before {
+	@apply content-[""] absolute inset-0 rounded-inherit transition ease-in;
+	clip-path: circle(100% at 50% 50%);
+}
+
+.has-state:hover::before {
+	@apply bg-whiteAlpha4;
+}
+
+.has-state:is(:focus, :focus-visible)::before {
+	@apply bg-whiteAlpha8;
+	animation: ripple 250ms ease forwards;
+}
+
+@keyframes ripple {
+	0% {
+		clip-path: circle(0% at 50% 50%);
+	}
+	100% {
+		clip-path: circle(100% at 50% 50%);
+	}
+}
+
+.btn-primary {
+	@apply bg-primary px-3 text-onPrimary h-12 max-w-max flex items-center gap-4 rounded-radiusPill;
+	line-height: 48px;
+}
+
+.btn-primary[disabled] {
+	@apply bg-outline text-onSurfaceVariant cursor-not-allowed;
+}
+
+.btn-primary[disabled]::before {
+	@apply hidden;
+}
+
+/*-----------------------------------*\
+  #UNIQUE HEADER STYLE
+\*-----------------------------------*/
+
+.clip-path {
+	clip-path: circle(4% at calc(100% - 102px) 5%);
+	transiton: clip-path 500ms ease;
+}
+
+#search-view.active {
+	@apply opacity-100 visible;
+	clip-path: circle(130% at 73% 5%);
+}
+
+.loading::before {
+	@apply content-[""] absolute top-2/4 -translate-y-2/4 right-[16px] w-[24px] h-[24px] border-onSurface border-solid border-[3px] border-t-transparent rounded-full hidden;
+	animation: loading 500ms linear infinite;
 }
