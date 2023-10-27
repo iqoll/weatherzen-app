@@ -11,15 +11,105 @@
 </head>
 <body>
   <!-- Header -->
-  <header>
-    
+  <header class="w-full">
+    <div class="flex flex-col md:p-3 w-full items-center md:flex-row md:justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex space-x-1 items-center p-3">
+        <img id="logo" alt="logo" class="w-12 md:w-16"/>
+        <p class="text-2xl md:text-4xl">WeatherZen</p>
+      </a>
+      <!-- flex input and current location -->
+      <div class="flex space-x-3 lg:w-2/3 lg:justify-between lg:ml-80">
+        <!-- Input search city -->
+        <div class="flex items-center bg-surface px-5 py-2 rounded-radiusPill lg:w-[400px]">
+          <input class="p-2 focus:outline-none text-sm" type="search" placeholder="search city...">
+          <button class="m-icon">search</button>
+        </div>  
+        <!-- Current location -->
+        <a href="#" class="bg-primary text-onPrimary px-4 py-3 rounded-full flex flex-col items-center lg:flex-row lg:space-x-2 lg:w-[170px]">
+          <span class="m-icon">my_location</span>
+          <span class="hidden md:block">Current Location</span>
+        </a>
+      </div>
+    </div>
   </header>
+
 
 
   <!-- Main -->
   <main>
-    <article class="container">
+    <article class="w-full">
+      <!-- Current weather -->
+      <section class="m-6 min-h-[250px]">
+        <div class="flex flex-col space-y-3 bg-surface p-6 text-onSurface rounded-xl md:w-1/2 lg:w-1/4">
+          <h2 class="text-3xl">Now</h2>
+          <div class="flex items-center">
+            <p class="text-[5rem] mr-10">25&deg;<sup class="text-3xl font-semibold">c</sup></p>
+            <img id="ocloud" class="mx-auto" width="64" height="64" alt="Overcast Cloud">
+          </div>
+          <p>Overcast Clouds</p>
+          <ul class="pt-2 border-t-2 border-outline">
+            <li class="flex items-center gap-2 mb-2">
+              <span class="m-icon">calendar_today</span>
+              <p class="text-onSurfaceVariant">Thursday, 16 Feb</p>
+            </li>
+            
+            <li class="flex items-center gap-2">
+              <span class="m-icon">location_on</span>
+              <p class="text-onSurfaceVariant">London, GB</p>
+            </li>
+          </ul>
+        </div>
+      </section>
 
+      <!-- Forecasts -->
+      <section class="m-6 min-h-[250px">
+        <h2 class="text-3xl font-semibold mb-3">5 Days Forecast</h2>
+        <div class="flex flex-col space-y-3 bg-surface p-6 text-onSurface rounded-xl md:w-1/2 lg:w-1/4">
+          <ul class="flex flex-col space-y-4">
+            <li class="flex justify-between items-center">
+              <div class="flex items-center">
+                <img id="o1n" width="36" height="36" alt="">
+                <span>7&deg;<sup>c</sup></span>
+              </div>
+              <p class="text-onSurfaceVariant">2 Mar</p>
+              <p class="text-onSurfaceVariant">Thursday</p>
+            </li>
+            <li class="flex justify-between items-center">
+              <div class="flex items-center">
+                <img id="o2n" width="36" height="36" alt="">
+                <span>7&deg;<sup>c</sup></span>
+              </div>
+              <p class="text-onSurfaceVariant">2 Mar</p>
+              <p class="text-onSurfaceVariant">Thursday</p>
+            </li>
+            <li class="flex justify-between items-center">
+              <div class="flex items-center">
+                <img id="o3n" width="36" height="36" alt="">
+                <span>7&deg;<sup>c</sup></span>
+              </div>
+              <p class="text-onSurfaceVariant">2 Mar</p>
+              <p class="text-onSurfaceVariant">Thursday</p>
+            </li>
+            <li class="flex justify-between items-center">
+              <div class="flex items-center">
+                <img id="o4n" width="36" height="36" alt="">
+                <span>7&deg;<sup>c</sup></span>
+              </div>
+              <p class="text-onSurfaceVariant">2 Mar</p>
+              <p class="text-onSurfaceVariant">Thursday</p>
+            </li>
+            <li class="flex justify-between items-center">
+              <div class="flex items-center">
+                <img id="o5n" width="36" height="36" alt="">
+                <span>7&deg;<sup>c</sup></span>
+              </div>
+              <p class="text-onSurfaceVariant">2 Mar</p>
+              <p class="text-onSurfaceVariant">Thursday</p>
+            </li>
+          </ul>
+        </div>
+      </section>
     </article>
   </main>
 </body>
