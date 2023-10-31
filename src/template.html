@@ -39,6 +39,7 @@
   <!-- Main -->
   <main class="h-[calc(100vh-80px)] md:h-[calc(100vh-96px)] overflow-y-scroll">
     <article class="container">
+      
       <!-- Left Content -->
       <div class="md:sticky md:top-0">
         <!-- Current weather -->
@@ -49,7 +50,7 @@
               <p class="text-[5rem] mr-10">25&deg;<sup class="text-3xl font-semibold">c</sup></p>
               <img id="ocloud" class="mx-auto" width="64" height="64" alt="Overcast Cloud">
             </div>
-            <p>Overcast Clouds</p>
+            <p class="text-lg md:text-xl">Overcast Clouds</p>
             <ul class="pt-2 border-t-2 border-outline">
               <li class="flex items-center gap-2 mb-2">
                 <span class="m-icon">calendar_today</span>
@@ -115,7 +116,7 @@
       </div>
 
       <!-- Right Content -->
-      <div class="md:mt-6">
+      <div class="md:mt-6 relative">
         <!-- Highlights -->
         <section class="mx-6 mb-28 md:mb-0" id="highlight">
           <div class=" bg-surface p-6 text-onSurface rounded-xl md:w-full">
@@ -127,7 +128,7 @@
               
               <!-- Air Quality Index -->
               <div class="relative bg-blackAlpha10 p-3 space-y-3 lg:w-1/2 lg:py-16">
-                <h3 class="text-onSurfaceVariant text-lg lg:absolute lg:top-8">Air Quality Index</h3>
+                <h3 class="text-onSurfaceVariant text-lg md:text-xl lg:absolute lg:top-8">Air Quality Index</h3>
 
                 <div class="flex items-center justify-between">
                   <span class="m-icon">air</span>
@@ -217,8 +218,25 @@
             </div>
           </div>
         </section>
+        <footer class="hidden absolute bottom-1/4 left-1/2 lg:flex lg:space-x-3">
+          <a href="https://www.linkedin.com/in/mhaiqall/" class="underline" target="_blank">LinkedIn</a>
+          <a href="https://github.com/iqoll" class="underline" target="_blank">Github</a>
+          <a href="https://www.youtube.com/channel/UC6oeErSW6tVl4HkS2igTatQ" class="underline" target="_blank">Youtube</a>
+        </footer>
       </div>
+
+      <div class="loading absolute top-0 bottom-0 w-full h-full bg-background place-items-center z-[1] hidden"></div>
     </article>
   </main>
+
+  <!-- Error 404 Page -->
+  <section class="fixed top-0 left-0 hidden flex-col justify-center items-center gap-3 z-[8] w-full h-screen bg-background" data-error-content>
+    <h2 class="font-bold text-7xl">404</h2>
+    <p class="font-semibold text-3xl">Page Not Found!</p>
+    <a href="#" class="px-4 py-3 text-xl bg-primary font-bold text-onPrimary rounded-radiusPill w-fit">
+      <span>Go Home</span>
+    </a>
+  </section>
+
 </body>
 </html>

@@ -117,6 +117,23 @@ article::-webkit-scrollbar-button {
 	height: 10px;
 }
 
+.loading::before {
+	content: '';
+	width: 48px;
+	height: 48px;
+	animation: loading 500ms linear infinite;
+	@apply border-4 border-t-transparent	border-onBackground rounded-full;
+}
+
+@keyframes loading {
+	0% {
+		transform: translateY(-50%) rotate(0);
+	}
+	100% {
+		transform: translateY(-50%) rotate(1turn);
+	}
+}
+
 @media (min-width: 768px) {
 	article.container {
 		grid-template-columns: 300px minmax(0, 1fr);
