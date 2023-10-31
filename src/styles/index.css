@@ -49,16 +49,16 @@ button {
 }
 
 sub {
-	@apply align-baseline;
+	@apply align-baseline bottom-0;
 }
 
 sup {
-	@apply align-top;
+	@apply align-top top-0;
 }
 
 sup,
 sub {
-	@apply text-xs;
+	@apply text-sm;
 }
 
 html {
@@ -87,7 +87,7 @@ body {
 
 .m-icon {
 	@apply font-materialSymbol font-normal tracking-normal normal-case whitespace-nowrap overflow-hidden;
-	font-size: 2rem;
+	font-size: 2.5rem;
 	line-height: 1;
 	direction: ltr;
 	font-feature-settings: 'liga';
@@ -95,4 +95,34 @@ body {
 	-webkit-font-smoothing: antialiased;
 	height: 1em;
 	width: 1em;
+}
+
+article.container {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 20px;
+	height: 100%;
+}
+
+article::-webkit-scrollbar-thumb {
+	background-color: transparent;
+}
+
+article:is(:hover, :focus-within)::-webkit-scrollbar-thumb {
+	@apply bg-whiteAlpha8;
+}
+
+article::-webkit-scrollbar-button {
+	height: 10px;
+}
+
+@media (min-width: 768px) {
+	article.container {
+		grid-template-columns: 300px minmax(0, 1fr);
+	}
+
+	#highlight .m-icon {
+		font-size: 3.5rem;
+	}
 }
