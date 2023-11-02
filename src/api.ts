@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const api_Key : string = '36d3e50496859749e7aba6f7763ee805'
+let api_Key: string;
 
 export const fetchData = async (URL: string, callback: Function) => {
   await axios.get(`${URL}&appid=${api_Key}`)
