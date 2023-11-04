@@ -22,11 +22,11 @@
       <div class="flex space-x-3 lg:w-2/3 lg:justify-between lg:ml-80">
         <!-- Input search city -->
         <div class="flex items-center bg-surface px-5 py-2 rounded-radiusPill lg:w-[400px]">
-          <input class="p-2 focus:outline-none text-sm" type="search" placeholder="search city...">
+          <input class="p-2 focus:outline-none text-sm" type="search" name="search" placeholder="search city..." autocomplete="off" data-search-field>
           <button class="m-icon">search</button>
         </div>  
         <!-- Current location -->
-        <a href="#" class="bg-primary text-onPrimary px-4 py-3 rounded-full flex flex-col items-center lg:flex-row lg:space-x-2 lg:w-[170px]">
+        <a href="#/current-location" class="bg-primary text-onPrimary px-4 py-3 rounded-full flex flex-col items-center lg:flex-row lg:space-x-2 lg:w-[170px]" data-current-location-btn>
           <span class="m-icon">my_location</span>
           <span class="hidden md:block">Current Location</span>
         </a>
@@ -38,12 +38,12 @@
 
   <!-- Main -->
   <main class="h-[calc(100vh-80px)] md:h-[calc(100vh-96px)] overflow-y-scroll">
-    <article class="container">
+    <article class="container" data-container>
       
       <!-- Left Content -->
       <div class="md:sticky md:top-0">
         <!-- Current weather -->
-        <section class="m-6 min-h-[250px] md:mr-0">
+        <section class="m-6 min-h-[250px] md:mr-0" data-current-weather>
           <div class="flex flex-col space-y-3 bg-surface p-6 text-onSurface rounded-xl ">
             <h2 class="text-3xl">Now</h2>
             <div class="flex items-center">
@@ -66,7 +66,7 @@
         </section>
 
         <!-- Forecasts -->
-        <section class="m-6 min-h-[250px] md:mr-0">
+        <section class="m-6 min-h-[250px] md:mr-0" data-5-days-forecast>
           <h2 class="text-3xl font-semibold mb-3" id="forecast-label">5 Days Forecast</h2>
           <div class="flex flex-col space-y-3 bg-surface p-6 text-onSurface rounded-xl">
             <ul class="flex flex-col space-y-4">
@@ -118,7 +118,7 @@
       <!-- Right Content -->
       <div class="md:mt-6 relative">
         <!-- Highlights -->
-        <section class="mx-6 mb-28 md:mb-0" id="highlight">
+        <section class="mx-6 mb-28 md:mb-0" id="highlight" data-highlights>
           <div class=" bg-surface p-6 text-onSurface rounded-xl md:w-full">
             <!-- Today's Highlight -->
             <h2 id="highlight-label" class="text-4xl mb-2">Today's Highlight</h2>
@@ -226,7 +226,7 @@
       </div>
 
       <!-- Loading screen -->
-      <div class="loading absolute top-0 bottom-0 w-full h-full bg-background place-items-center z-[1] hidden"></div>
+      <div class="loading absolute top-0 bottom-0 w-full h-full bg-background place-items-center z-[1] hidden" data-loading></div>
     </article>
   </main>
 
