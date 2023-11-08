@@ -1,6 +1,7 @@
 import axios from "axios"
+import { apiKey } from '../config'
 
-const api_Key: string = process.env.API_KEY as string
+const api_Key: string = apiKey
 
 export const fetchData = async (URL: string, callback: Function) => {
   await axios.get(`${URL}&appid=${api_Key}`)
@@ -25,6 +26,6 @@ export const url = {
   },
   // Search query e.g.: "London", "Jakarta"
   geo(query: string) {
-    return `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5`
+    return `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1`
   }
 }

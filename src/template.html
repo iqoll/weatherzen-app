@@ -23,7 +23,7 @@
         <!-- Input search city -->
         <div class="flex items-center bg-surface px-5 py-2 rounded-radiusPill lg:w-[400px]">
           <input class="p-2 focus:outline-none text-sm" type="search" name="search" placeholder="search city..." autocomplete="off" data-search-field>
-          <button class="m-icon">search</button>
+          <button class="m-icon" data-search-button>search</button>
         </div>  
         <!-- Current location -->
         <a href="#/current-location" class="bg-primary text-onPrimary px-4 py-3 rounded-full flex flex-col items-center lg:flex-row lg:space-x-2 lg:w-[170px]" data-current-location-btn>
@@ -43,27 +43,7 @@
       <!-- Left Content -->
       <div class="md:sticky md:top-0">
         <!-- Current weather -->
-        <section class="m-6 min-h-[250px] md:mr-0" data-current-weather>
-          <div class="flex flex-col space-y-3 bg-surface p-6 text-onSurface rounded-xl ">
-            <h2 class="text-3xl">Now</h2>
-            <div class="flex items-center">
-              <p class="text-[5rem] mr-10">25&deg;<sup class="text-3xl font-semibold">c</sup></p>
-              <img id="ocloud" class="mx-auto" width="64" height="64" alt="Overcast Cloud">
-            </div>
-            <p class="text-lg md:text-xl">Overcast Clouds</p>
-            <ul class="pt-2 border-t-2 border-outline">
-              <li class="flex items-center gap-2 mb-2">
-                <span class="m-icon">calendar_today</span>
-                <p class="text-onSurfaceVariant">Thursday 16, Feb</p>
-              </li>
-              
-              <li class="flex items-center gap-2">
-                <span class="m-icon">location_on</span>
-                <p class="text-onSurfaceVariant">London, GB</p>
-              </li>
-            </ul>
-          </div>
-        </section>
+        <section class="m-6 min-h-[250px] md:mr-0" data-current-weather></section>
 
         <!-- Forecasts -->
         <section class="m-6 min-h-[250px] md:mr-0" data-5-days-forecast>
@@ -155,34 +135,38 @@
               </div>
               
               <!-- Sunrise Sunset -->
-              <div class="relative bg-blackAlpha10 p-3 space-y-3 lg:w-[48%] lg:py-16">
-                <h3 class="text-onSurfaceVariant text-lg md:text-xl lg:absolute lg:top-8">Sunrise & Sunset</h3>
-                
-                <div class="flex items-center flex-wrap flex-grow gap-y-2">
-                  <div class="flex items-center w-1/2 justify-end lg:justify-normal">
-                    <span class="m-icon mr-2 lg:mr-6">clear_day</span>
-                    <div>
-                      <p class="text-lg text-onSurfaceVariant">Sunrise</p>
-                      <p class="text-lg md:text-3xl lg:text-4xl">6:30 AM</p>
+              <div data-sunrise-sunset class="lg:w-[48%]">
+                <div class="relative bg-blackAlpha10 p-3 space-y-3 lg:py-16">
+                  <h3 class="text-onSurfaceVariant text-lg md:text-xl lg:absolute lg:top-8">Sunrise & Sunset</h3>
+                  
+                  <div class="flex items-center flex-wrap flex-grow gap-y-2">
+                    <div class="flex items-center w-1/2 justify-end lg:justify-normal">
+                      <span class="m-icon mr-2 lg:mr-6">clear_day</span>
+                      <div>
+                        <p class="text-lg text-onSurfaceVariant">Sunrise</p>
+                        <p class="text-lg md:text-3xl lg:text-4xl">6:30 AM</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="flex items-center w-1/2 justify-end lg:justify-start">
-                    <span class="m-icon mr-2 lg:mr-6">clear_night</span>
-                    <div>
-                      <p class="text-lg text-onSurfaceVariant">Sunset</p>
-                      <p class="text-lg md:text-3xl lg:text-4xl">5:54 PM</p>
+                    <div class="flex items-center w-1/2 justify-end lg:justify-start">
+                      <span class="m-icon mr-2 lg:mr-6">clear_night</span>
+                      <div>
+                        <p class="text-lg text-onSurfaceVariant">Sunset</p>
+                        <p class="text-lg md:text-3xl lg:text-4xl">5:54 PM</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-
+              
               <!-- Humidity -->
-              <div class="bg-blackAlpha10 p-3 space-y-3 lg:w-1/4 lg:py-10">
-                <h3 class="text-onSurfaceVariant text-lg md:text-xl">Humidity</h3>
-                <div class="flex items-center justify-between gap-4 xl:justify-between">
-                  <span class="m-icon">humidity_percentage</span>
+              <div data-humidity class="lg:w-1/4">
+                <div class="bg-blackAlpha10 p-3 space-y-3 lg:py-10">
+                  <h3 class="text-onSurfaceVariant text-lg md:text-xl">Humidity</h3>
+                  <div class="flex items-center justify-between gap-4 xl:justify-between">
+                    <span class="m-icon">humidity_percentage</span>
 
-                  <p class="text-4xl">35<sub class="text-3xl">%</sub></p>
+                    <p class="text-4xl">35<sub class="text-3xl">%</sub></p>
+                  </div>
                 </div>
               </div>
 
