@@ -54,24 +54,31 @@ export const getTime: Function = (timeUnix: number, timezone: number) => {
   return `${hours % 12 || 12}:${minutes} ${period}`
 }
 
-export const aqiText = {
-  1: {
+interface AqiText {
+  [key: string]: {
+    level: string;
+    message: string;
+  }
+}
+
+export const aqiText: AqiText = {
+  '1': {
     level: 'Good',
     message: 'Air quality is considered satisfactory, and air pollution poses little or no risk'
   },
-  2: {
+  '2': {
     level: 'Fair',
     message: 'Air quality is acceptable, may be a moderate health concern for a number of people'
   },
-  3: {
+  '3': {
     level: 'Moderate',
     message: 'Members of sensitive group may be affected. The general public is likely not affected'
   },
-  4: {
+  '4': {
     level: 'Poor',
     message: 'The general public may experience health effects. For a number of people may experience more serious effects'
   },
-  5: {
+  '5': {
     level: 'Very Poor',
     message: 'Entire population is likely to be affected. Health warning of emergency conditions'
   }

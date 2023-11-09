@@ -35,6 +35,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
     const visibilitySection = document.querySelector('[data-visibility]') as HTMLDivElement
     const FeelsLikeSection = document.querySelector('[data-feels-like]') as HTMLDivElement
     const forecastSection = document.querySelector('[data-5-days-forecast]') as HTMLElement
+    const airQualitySection = document.querySelector('[data-air-quality]') as HTMLDivElement
 
     currentWeatherSection.innerHTML = ''
     sunriseSunsetSection.innerHTML = ''
@@ -43,6 +44,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
     visibilitySection.innerHTML = ''
     FeelsLikeSection.innerHTML = ''
     forecastSection.innerHTML = ''
+    airQualitySection.innerHTML = ''
 
     const {
       weather,
@@ -212,8 +214,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
    */
     fetchData(url.forecast(`lat=${latitude}`, `lon=${longitude}`), (forecast: ForecastData) => {
       const {
-        list: forecastList,
-        city: {timezone}
+        list: forecastList
       } = forecast
       
       forecastSection.innerHTML = `
@@ -267,6 +268,66 @@ const getWeatherData = (latitude: string, longitude: string) => {
         }
       }
     })
+
+     /**
+   * Air Quality Index Section
+   */
+    fetchData(url.airPollution(`lat=${latitude}`, `lon=${longitude}`), (airPollution: AirPollutionData) => {
+      const [{
+        main: {aqi},
+        components: { no2, o3, so2, pm2_5 }
+      }] = airPollution.list
+
+      console.log(pm2_5)
+      const cardAir = document.createElement('div')
+      cardAir.classList.add('relative', 'bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-16')
+
+      cardAir.innerHTML = `
+              <h3 class="text-onSurfaceVariant text-lg md:text-xl lg:absolute lg:top-8">Air Quality Index</h3>
+
+                <div class="flex items-center justify-between">
+                  <span class="m-icon">air</span>
+                  <ul class="flex items-center flex-wrap flex-grow gap-y-2 py-2 px-1 lg:flex-nowrap">
+                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
+                      <p class="text-lg md:text-4xl">${pm2_5.toPrecision(3)}</p>
+                      <p class="text-lg text-onSurfaceVariant">PM<sub>2.5</sub></p>
+                    </li>
+                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
+                      <p class="text-lg md:text-4xl">${so2.toPrecision(3)}</p>
+                      <p class="text-lg text-onSurfaceVariant ">SO<sub>2</sub></p>
+                    </li>
+                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
+                      <p class="text-lg md:text-4xl">${no2.toPrecision(3)}</p>
+                      <p class="text-lg text-onSurfaceVariant">NO<sub>2</sub></p>
+                    </li>
+                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
+                      <p class="text-lg md:text-4xl">${o3.toPrecision(3)}</p>
+                      <p class="text-lg text-onSurfaceVariant">O<sub>3</sub></p>
+                    </li>
+                  </ul>
+                </div>
+                <span id="aqi" class="absolute top-0 right-4 lg:top-4 rounded-radiusPill font-bold py-1 px-3 text-onBgAqi1 cursor-help" title="${module.aqiText[aqi].message}">${module.aqiText[aqi].level}</span>
+      `
+      const aqiMessage = cardAir.querySelector('#aqi')
+      if(aqiMessage) {
+        switch (aqiMessage.innerHTML) {
+          case 'Good':
+            aqiMessage.classList.add('bg-bgAqi1', 'text-onBgAqi1');
+            break;
+          case 'Fair':
+            aqiMessage.classList.add('bg-bgAqi2', 'text-onBgAqi2');
+            break;
+          case 'Moderate':
+            aqiMessage.classList.add('bg-bgAqi3', 'text-onBgAqi3');
+            break;
+          case 'Poor':
+            aqiMessage.classList.add('bg-bgAqi4', 'text-onBgAqi4');
+          case 'Very Poor':
+            aqiMessage.classList.add('bg-bgAqi5', 'text-onBgAqi5')
+        }
+      }
+      airQualitySection.appendChild(cardAir)
+    })
   })
 }
 
@@ -318,6 +379,7 @@ import o4d from './assets/weather-icons/04d.png'
 import o1n from './assets/weather-icons/01n.png'
 import o2n from './assets/weather-icons/02n.png'
 import o9n from './assets/weather-icons/09n.png'
+import { AirPollutionData } from './interfaces/AirPollutionData'
 
 const logo = document.getElementById('logo') as HTMLImageElement
 logo.src = logoImg

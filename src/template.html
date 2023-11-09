@@ -127,33 +127,34 @@
             <div class="flex flex-col space-y-3 lg:flex-row md:space-y-0 md:gap-3 md:flex-wrap">
               
               <!-- Air Quality Index -->
-              <div class="relative bg-blackAlpha10 p-3 space-y-3 lg:w-1/2 lg:py-16">
-                <h3 class="text-onSurfaceVariant text-lg md:text-xl lg:absolute lg:top-8">Air Quality Index</h3>
+              <div data-air-quality class="lg:w-1/2">
+                <div class="relative bg-blackAlpha10 p-3 space-y-3 lg:py-16">
+                  <h3 class="text-onSurfaceVariant text-lg md:text-xl lg:absolute lg:top-8">Air Quality Index</h3>
 
-                <div class="flex items-center justify-between">
-                  <span class="m-icon">air</span>
-                  <ul class="flex items-center flex-wrap flex-grow gap-y-2 py-2 px-1 lg:flex-nowrap">
-                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
-                      <p class="text-lg md:text-4xl">23.3</p>
-                      <p class="text-lg text-onSurfaceVariant">PM<sub>2.5</sub></p>
-                    </li>
-                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
-                      <p class="text-lg md:text-4xl">23.3</p>
-                      <p class="text-lg text-onSurfaceVariant ">SO<sub>2</sub></p>
-                    </li>
-                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
-                      <p class="text-lg md:text-4xl">23.3</p>
-                      <p class="text-lg text-onSurfaceVariant">NO<sub>2</sub></p>
-                    </li>
-                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
-                      <p class="text-lg md:text-4xl">23.3</p>
-                      <p class="text-lg text-onSurfaceVariant">O<sub>3</sub></p>
-                    </li>
-                  </ul>
+                  <div class="flex items-center justify-between">
+                    <span class="m-icon">air</span>
+                    <ul class="flex items-center flex-wrap flex-grow gap-y-2 py-2 px-1 lg:flex-nowrap">
+                      <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
+                        <p class="text-lg md:text-4xl">23.3</p>
+                        <p class="text-lg text-onSurfaceVariant">PM<sub>2.5</sub></p>
+                      </li>
+                      <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
+                        <p class="text-lg md:text-4xl">23.3</p>
+                        <p class="text-lg text-onSurfaceVariant ">SO<sub>2</sub></p>
+                      </li>
+                      <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
+                        <p class="text-lg md:text-4xl">23.3</p>
+                        <p class="text-lg text-onSurfaceVariant">NO<sub>2</sub></p>
+                      </li>
+                      <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
+                        <p class="text-lg md:text-4xl">23.3</p>
+                        <p class="text-lg text-onSurfaceVariant">O<sub>3</sub></p>
+                      </li>
+                    </ul>
+                  </div>
+                  <span id="aqi" class="absolute top-0 right-4 lg:top-4 rounded-radiusPill font-bold py-1 px-3 bg-bgAqi1 text-onBgAqi1 cursor-help" title="aqi message">good</span>
                 </div>
-                <span id="aqi" class="absolute top-0 right-4 lg:top-4 rounded-radiusPill font-bold py-1 px-3 bg-bgAqi1 text-onBgAqi1 cursor-help" title="aqi message">good</span>
               </div>
-              
               <!-- Sunrise Sunset -->
               <div data-sunrise-sunset class="lg:w-[48%]">
                 <div class="relative bg-blackAlpha10 p-3 space-y-3 lg:py-16">
