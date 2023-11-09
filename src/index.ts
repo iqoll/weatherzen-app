@@ -9,14 +9,33 @@ import { ForecastData } from './interfaces/ForecastData'
 
 
 /**
- * Add Event listener on multiple elements
- * @param elements Elements node array
- * @param eventType e.g. : 'click', 'mouseover'
- * @param callback Callback Function
+ * UTILITY FUNCTION
  */
-const addEventOnElements = (elements: NodeListOf<Element>, eventType: string, callback: (event: Event) => void): void => {
-  for(const element of elements) element.addEventListener(eventType, callback)
-} 
+
+function showLoadingScreen() {
+  const loadingScreen = document.querySelector('[data-loading]') as HTMLElement;
+  loadingScreen.classList.remove('hidden');
+  loadingScreen.classList.add('grid')
+}
+
+function hideLoadingScreen() {
+  const loadingScreen = document.querySelector('[data-loading]') as HTMLElement;
+  loadingScreen.classList.remove('grid')
+  loadingScreen.classList.add('hidden');
+}
+
+function showError404(){
+  const errorContent = document.querySelector('[data-error-content]') as HTMLElement
+  errorContent.classList.remove('hidden')
+  errorContent.classList.add('flex')
+}
+
+function hideError404(){
+  const errorContent = document.querySelector('[data-error-content]') as HTMLElement
+  errorContent.classList.remove('flex')
+  errorContent.classList.add('hidden')
+}
+
 
 /**
  * SEARCH INTEGRATION
@@ -24,10 +43,24 @@ const addEventOnElements = (elements: NodeListOf<Element>, eventType: string, ca
 const searchField = document.querySelector('[data-search-field]') as HTMLInputElement
 const searchButton = document.querySelector('[data-search-button]') as HTMLButtonElement
 const currentLocationBtn = document.querySelector('[data-current-location-btn]') as HTMLButtonElement
+const goHomeBtn = document.querySelector('[go-home]') as HTMLButtonElement
 
+
+
+/**
+ * Functions to get the weather data based on the user's query
+ * Plus handle the dom manipulation for all of the section
+ */
 const getWeatherData = (latitude: string, longitude: string) => {
+  showLoadingScreen();
+
+  /**
+ * Fetching the initial data
+ */
   fetchData(url.currentWeather(`lat=${latitude}`, `lon=${longitude}`), (currentWeather: CurrentWeatherData) => {
-    // console.log(currentWeather)
+    /**
+  * All of the document that are going to be manipulated
+  */
     const currentWeatherSection = document.querySelector('[data-current-weather]') as HTMLElement
     const sunriseSunsetSection = document.querySelector('[data-sunrise-sunset]') as HTMLDivElement
     const humiditySection = document.querySelector('[data-humidity]') as HTMLDivElement
@@ -55,7 +88,8 @@ const getWeatherData = (latitude: string, longitude: string) => {
       timezone
     } = currentWeather
     const [{description, icon}] = weather
-    console.log(icon)
+    
+    hideLoadingScreen()
     
     /**
    * CURRENT WEATHER SECTION
@@ -331,6 +365,9 @@ const getWeatherData = (latitude: string, longitude: string) => {
   })
 }
 
+/**
+ * Functions to get the user's query location
+ */
 const getCoordinates = () => {
   const cityName = searchField.value.trim()
   if(!cityName) return
@@ -341,11 +378,14 @@ const getCoordinates = () => {
 
       getWeatherData(lat, lon)
     } else {
-      alert('No weather details found for this location.')
+      showError404()
     }
   })
 }
 
+/**
+ * Function to get the user's location
+ */
 const getUserCoordinates = () => {
   navigator.geolocation.getCurrentPosition(
     position => {
@@ -358,16 +398,14 @@ const getUserCoordinates = () => {
   )
 }
 
+
+/**
+ * Event Listeners
+ */
 searchButton.addEventListener('click', getCoordinates)
 currentLocationBtn.addEventListener('click', getUserCoordinates)
+goHomeBtn.addEventListener('click', hideError404)
 
-const errorContent = document.querySelector('[data-error-content]') as HTMLElement
-
-
-
-const error404 = () => {
-  
-}
 
 /**
  * Assets for all the default logo that are used
