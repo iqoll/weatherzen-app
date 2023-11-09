@@ -28,7 +28,7 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   output: {
-    publicPath: '/',
+    publicPath: '',
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'public'),
     clean: true,
