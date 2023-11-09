@@ -89,8 +89,6 @@ const getWeatherData = (latitude: string, longitude: string) => {
     } = currentWeather
     const [{description, icon}] = weather
     
-    hideLoadingScreen()
-    
     /**
    * CURRENT WEATHER SECTION
    */
@@ -362,6 +360,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
       }
       airQualitySection.appendChild(cardAir)
     })
+    hideLoadingScreen()
   })
 }
 

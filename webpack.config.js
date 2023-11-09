@@ -46,7 +46,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'WeatherZen',
       filename: 'index.html',
-      template: 'src/template.html'
+      template: 'src/template.html',
+      favicon: 'src/assets/favicon.ico'
     })
   ]
 } 
