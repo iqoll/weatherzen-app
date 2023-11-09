@@ -23,7 +23,7 @@ const addEventOnElements = (elements: NodeListOf<Element>, eventType: string, ca
  */
 const searchField = document.querySelector('[data-search-field]') as HTMLInputElement
 const searchButton = document.querySelector('[data-search-button]') as HTMLButtonElement
-
+const currentLocationBtn = document.querySelector('[data-current-location-btn]') as HTMLButtonElement
 
 const getWeatherData = (latitude: string, longitude: string) => {
   fetchData(url.currentWeather(`lat=${latitude}`, `lon=${longitude}`), (currentWeather: CurrentWeatherData) => {
@@ -337,8 +337,8 @@ const getCoordinates = () => {
 
   fetchData(url.geo(cityName), (weatherDetails: Coordinates[]) => {
     if (weatherDetails.length > 0) {
-      const { name, lat, lon } = weatherDetails[0]
-      console.log(name, lat, lon)
+      const { lat, lon } = weatherDetails[0]
+
       getWeatherData(lat, lon)
     } else {
       alert('No weather details found for this location.')
@@ -346,25 +346,24 @@ const getCoordinates = () => {
   })
 }
 
+const getUserCoordinates = () => {
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      const { latitude, longitude } = position.coords
+      getWeatherData(latitude.toString(), longitude.toString())
+    },
+    error => {
+      console.log(error)
+    }
+  )
+}
+
 searchButton.addEventListener('click', getCoordinates)
+currentLocationBtn.addEventListener('click', getUserCoordinates)
 
-
-const container = document.querySelector('[data-container]') as HTMLElement
-const loading = document.querySelector('[data-loading]') as HTMLElement
-const currentLocationBtn = document.querySelector('[data-current-location-btn]') as HTMLAnchorElement
 const errorContent = document.querySelector('[data-error-content]') as HTMLElement
 
-export const updateWeather = (...args: string[]) => {
-  loading.classList.add('grid')
-  container.style.overflowY = 'hidden'
-  errorContent?.classList.add('hidden')
 
-  if (window.location.hash === '#/current-location') {
-    currentLocationBtn.setAttribute('disabled', '')
-  } else {
-    currentLocationBtn.removeAttribute('disabled')
-  }
-}
 
 const error404 = () => {
   
