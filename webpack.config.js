@@ -28,11 +28,11 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   output: {
-    publicPath: '',
+    publicPath: '/',
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'public'),
     clean: true,
-    assetModuleFilename: 'assets/[name][ext]'
+    assetModuleFilename: 'assets/weather-icons/[name][ext]'
   },
   devServer: {
     watchFiles: ["src/**/*"],

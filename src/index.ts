@@ -1,47 +1,11 @@
 import './styles/index.css'
 import { fetchData, url } from './api'
 import * as module from './module'
+
 import { CurrentWeatherData } from './interfaces/CurrentWeatherData'
 import { Coordinates } from './interfaces/Coordinates'
-
-/**
- * Assets for all the logo that are used
- */
-import logoImg from'./assets/weather-icons/03d.png'
-import o1d from './assets/weather-icons/01d.png'
-import o2d from './assets/weather-icons/02d.png'
-import o3d from './assets/weather-icons/03d.png'
-import o4d from './assets/weather-icons/04d.png'
-import o9d from './assets/weather-icons/09d.png'
-import o10d from './assets/weather-icons/010d.png'
-import o13d from './assets/weather-icons/013d.png'
-import o50d from './assets/weather-icons/50d.png'
-import o1n from './assets/weather-icons/01n.png'
-import o2n from './assets/weather-icons/02n.png'
-import o3n from './assets/weather-icons/03n.png'
-import o4n from './assets/weather-icons/04n.png'
-import o9n from './assets/weather-icons/09n.png'
-import o10n from './assets/weather-icons/10n.png'
-import o13n from './assets/weather-icons/13n.png'
-import o50n from './assets/weather-icons/50n.png'
 import { LocationData } from './interfaces/LocationData'
-
-const logo = document.getElementById('logo') as HTMLImageElement
-logo.src = logoImg
-// const weatherIcon = document.getElementById('ocloud') as HTMLImageElement
-// weatherIcon.src = oCloud
-
-const forecast1 = document.getElementById('o1n') as HTMLImageElement
-const forecast2 = document.getElementById('o2n') as HTMLImageElement
-const forecast3 = document.getElementById('o3n') as HTMLImageElement
-const forecast4 = document.getElementById('o4n') as HTMLImageElement
-const forecast5 = document.getElementById('o5n') as HTMLImageElement
-
-forecast1.src = o1n
-forecast2.src = o2n
-forecast3.src = o1d
-forecast4.src = o4d
-forecast5.src = o9n
+import { ForecastData } from './interfaces/ForecastData'
 
 
 /**
@@ -70,6 +34,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
     const pressureSection = document.querySelector('[data-pressure]') as HTMLDivElement
     const visibilitySection = document.querySelector('[data-visibility]') as HTMLDivElement
     const FeelsLikeSection = document.querySelector('[data-feels-like]') as HTMLDivElement
+    const forecastSection = document.querySelector('[data-5-days-forecast]') as HTMLElement
 
     currentWeatherSection.innerHTML = ''
     sunriseSunsetSection.innerHTML = ''
@@ -77,6 +42,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
     pressureSection.innerHTML = ''
     visibilitySection.innerHTML = ''
     FeelsLikeSection.innerHTML = ''
+    forecastSection.innerHTML = ''
 
     const {
       weather,
@@ -87,7 +53,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
       timezone
     } = currentWeather
     const [{description, icon}] = weather
-    console.log(currentWeather)
+    console.log(icon)
     
     /**
    * CURRENT WEATHER SECTION
@@ -98,9 +64,8 @@ const getWeatherData = (latitude: string, longitude: string) => {
 
     card.innerHTML = `
       <h2 class="text-3xl">Now</h2>
-      <div class="flex items-center">
+      <div class="flex items-center" parent-image>
         <p class="text-[5rem] mr-10">${parseInt(temp)}&deg;<sup class="text-3xl font-semibold">c</sup></p>
-        <img id="ocloud" src="./assets/weather-icons/${icon}.png" class="mx-auto" width="64" height="64" alt="${description}">
       </div>
       <p class="text-lg md:text-xl">${description}</p>
       <ul class="pt-2 border-t-2 border-outline">
@@ -116,10 +81,25 @@ const getWeatherData = (latitude: string, longitude: string) => {
       </ul>
     `
     // Dynamic logo for the weather icon
-    const image = card.querySelector('#ocloud') as HTMLImageElement
-    if(image) {
-      image.src = `assets/${icon}.png`
+    const image = document.createElement('img')
+    image.alt = description
+    image.classList.add('mx-auto')
+    image.width = 64
+    image.height = 64
+    
+    import(`./assets/weather-icons/${icon}.png`)
+      .then((img) => {
+        image.src = img.default
+      })
+      .catch((error) => {
+        console.error('Error loading image:', error)
+      })
+
+    const imgParent = card.querySelector('[parent-image]')
+    if(imgParent) {
+      imgParent.appendChild(image)
     }
+
     const locationElement = card.querySelector('[data-location]') as HTMLElement
 
     // Additional data for the location Element
@@ -180,6 +160,113 @@ const getWeatherData = (latitude: string, longitude: string) => {
       /**
    * Pressure Section
    */
+    const cardPre = document.createElement('div')
+    cardPre.classList.add('bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-10')
+
+    cardPre.innerHTML = `
+      <h3 class="text-onSurfaceVariant text-lg md:text-xl">Pressure</h3>
+      <div class="flex items-center justify-between gap-4">
+        <span class="m-icon">airwave</span>
+
+        <p class="text-4xl">${pressure}<sub class="text-3xl">hPa</sub></p>
+      </div>
+    `
+
+    pressureSection.appendChild(cardPre)
+
+      /**
+   * Visibility Section
+   */
+    const cardVis = document.createElement('div')
+    cardVis.classList.add('bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-10')
+
+    cardVis.innerHTML = `
+      <h3 class="text-onSurfaceVariant text-lg md:text-xl">Visibility</h3>
+      <div class="flex items-center justify-between gap-4">
+        <span class="m-icon">visibility</span>
+
+        <p class="text-4xl">${visibility / 1000}<sub class="text-3xl">km</sub></p>
+    `
+
+    visibilitySection.appendChild(cardVis)
+
+    /**
+   * Feels Like Section
+   */
+    const cardFeels = document.createElement('div')
+    cardFeels.classList.add('bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-10')
+
+    cardFeels.innerHTML = `
+      <h3 class="text-onSurfaceVariant text-lg md:text-xl">Feels Like</h3>
+      <div class="flex items-center justify-between gap-4">
+        <span class="m-icon">thermostat</span>
+
+        <p class="text-4xl">${feels_like}&deg;<sup class="text-3xl">c</sup></p>
+      </div>
+    `
+
+    FeelsLikeSection.appendChild(cardFeels)
+
+    /**
+   * Forecast Section
+   */
+    fetchData(url.forecast(`lat=${latitude}`, `lon=${longitude}`), (forecast: ForecastData) => {
+      const {
+        list: forecastList,
+        city: {timezone}
+      } = forecast
+      
+      forecastSection.innerHTML = `
+        <h2 class="text-3xl font-semibold mb-3" id="forecast-label">5 Days Forecast</h2>
+          <div class="flex flex-col space-y-3 bg-surface p-6 text-onSurface rounded-xl">
+            <ul class="flex flex-col space-y-4" data-forecast-list></ul>
+          </div>
+        `
+
+      for(let i = 7, len = forecastList.length; i < len; i += 8) {
+        const {
+          main: { temp_max },
+          weather,
+          dt_txt
+        } = forecastList[i]
+        const [{description, icon}] = weather
+        const date = new Date(dt_txt)
+
+        const li = document.createElement('li')
+        li.classList.add('flex', 'justify-between', 'items-center')
+
+        li.innerHTML = `
+          <div class="flex items-center" forecast-image-parent>
+            <span class="text-xl">${parseInt(temp_max)}&deg;<sup>c</sup></span>
+          </div>
+          <p class="text-onSurfaceVariant text-lg ">${date.getDate()} ${module.monthNames[date.getUTCMonth()]}</p>
+          <p class="text-onSurfaceVariant text-lg ">${module.weekDayNames[date.getUTCDay()]}</p>
+        `
+        const image = document.createElement('img')
+        image.alt = description
+        image.height = 36
+        image.width = 36
+
+        import(`./assets/weather-icons/${icon}.png`)
+          .then((img) => {
+          image.src = img.default
+        })
+          .catch((error) => {
+          console.error('Error loading image:', error)
+        })
+
+        const forecastParentImg = li.querySelector('[forecast-image-parent]')
+
+        if(forecastParentImg) {
+          forecastParentImg.prepend(image)
+        }
+
+        const ul = forecastSection.querySelector('[data-forecast-list]')
+        if(ul) {
+          ul.appendChild(li)
+        }
+      }
+    })
   })
 }
 
@@ -211,36 +298,40 @@ export const updateWeather = (...args: string[]) => {
   container.style.overflowY = 'hidden'
   errorContent?.classList.add('hidden')
 
-  
-  const forecastSection = document.querySelector('[data-5-days-forecast]') as HTMLElement
-  const highlightSection = document.querySelector('[data-highlights]') as HTMLElement
-
-
-  forecastSection.innerHTML = ''
-  highlightSection.innerHTML = ''
-
   if (window.location.hash === '#/current-location') {
     currentLocationBtn.setAttribute('disabled', '')
   } else {
     currentLocationBtn.removeAttribute('disabled')
   }
-
-  
-  fetchData(url.currentWeather(args[0], args[1]), (currentWeather: CurrentWeatherData)=> {
-    const {
-      weather,
-      dt: dateUnix,
-      sys: { sunrise: sunriseUnixUTC, sunset: sunsetUnixUTC },
-      main: {temp, feels_like, pressure, humidity },
-      visibility,
-      timezone
-    } = currentWeather
-    const [{ description, icon }] = weather   
-  })
 }
 
-export const error404 = () => {
+const error404 = () => {
   
 }
 
+/**
+ * Assets for all the default logo that are used
+ */
+import logoImg from'./assets/weather-icons/03d.png'
+import o1d from './assets/weather-icons/01d.png'
+import o4d from './assets/weather-icons/04d.png'
+import o1n from './assets/weather-icons/01n.png'
+import o2n from './assets/weather-icons/02n.png'
+import o9n from './assets/weather-icons/09n.png'
 
+const logo = document.getElementById('logo') as HTMLImageElement
+logo.src = logoImg
+const weatherIcon = document.getElementById('ocloud') as HTMLImageElement
+weatherIcon.src = o1d
+
+const forecast1 = document.getElementById('o1n') as HTMLImageElement
+const forecast2 = document.getElementById('o2n') as HTMLImageElement
+const forecast3 = document.getElementById('o3n') as HTMLImageElement
+const forecast4 = document.getElementById('o4n') as HTMLImageElement
+const forecast5 = document.getElementById('o5n') as HTMLImageElement
+
+forecast1.src = o1n
+forecast2.src = o2n
+forecast3.src = o1d
+forecast4.src = o4d
+forecast5.src = o9n
