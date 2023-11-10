@@ -264,6 +264,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
         } = forecastList[i]
         const [{description, icon}] = weather
         const date = new Date(dt_txt)
+        console.log(dt_txt, date, date.getUTCDay())
 
         const li = document.createElement('li')
         li.classList.add('flex', 'justify-between', 'items-center')
@@ -273,7 +274,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
             <span class="text-xl">${parseInt(temp_max)}&deg;<sup>c</sup></span>
           </div>
           <p class="text-onSurfaceVariant text-lg ">${date.getDate()} ${module.monthNames[date.getUTCMonth()]}</p>
-          <p class="text-onSurfaceVariant text-lg ">${module.weekDayNames[date.getUTCDay() + 1]}</p>
+          <p class="text-onSurfaceVariant text-lg ">${module.weekDayNames[date.getUTCDay()]}</p>
         `
 
         const image = document.createElement('img')

@@ -1,5 +1,4 @@
 export const weekDayNames: string[] = [
-  'Sunday',
   'Monday',
   'Tuesday',
   'Wednesday',
@@ -21,7 +20,7 @@ export const monthNames: string[] = [
   'Sep',
   'Oct',
   'Nov',
-  'Des'
+  'Dec'
 ]
 
 /**
@@ -33,7 +32,7 @@ export const monthNames: string[] = [
 
 export const getDate: Function = (dateUnix: number, timezone: number) => {
   const date: Date = new Date((dateUnix + timezone) * 1000)
-  const weekDayName: string = weekDayNames[date.getUTCDay()]
+  const weekDayName: string = weekDayNames[date.getUTCDay() - 1]
   const monthName: string = monthNames[date.getUTCMonth()] 
   
   return `${weekDayName} ${date.getUTCDate()}, ${monthName}`
