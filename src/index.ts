@@ -153,21 +153,21 @@ const getWeatherData = (latitude: string, longitude: string) => {
     const cardSun = document.createElement('div')
     cardSun.classList.add('relative', 'bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-16')
     cardSun.innerHTML = `
-      <h3 class="text-onSurfaceVariant text-lg md:text-xl lg:absolute lg:top-8">Sunrise & Sunset</h3>
+      <h3 class="text-onSurfaceVariant text-xl lg:absolute lg:top-8">Sunrise & Sunset</h3>
                   
       <div class="flex items-center flex-wrap flex-grow gap-y-2">
         <div class="flex items-center w-1/2 justify-end lg:justify-normal">
           <span class="m-icon mr-2 lg:mr-6">clear_day</span>
           <div>
-            <p class="text-lg text-onSurfaceVariant">Sunrise</p>
-            <p class="text-lg md:text-3xl lg:text-4xl">${module.getTime(sunriseUnixUTC, timezone)}</p>
+            <p class="text-xl text-onSurfaceVariant">Sunrise</p>
+            <p class="text-2xl md:text-3xl lg:text-4xl">${module.getTime(sunriseUnixUTC, timezone)}</p>
           </div>
         </div>
         <div class="flex items-center w-1/2 justify-end lg:justify-start">
           <span class="m-icon mr-2 lg:mr-6">clear_night</span>
           <div>
-            <p class="text-lg text-onSurfaceVariant">Sunset</p>
-            <p class="text-lg md:text-3xl lg:text-4xl">${module.getTime(sunsetUnixUTC, timezone)}</p>
+            <p class="text-xl text-onSurfaceVariant">Sunset</p>
+            <p class="text-2xl md:text-3xl lg:text-4xl">${module.getTime(sunsetUnixUTC, timezone)}</p>
           </div>
         </div>
       </div>
@@ -181,7 +181,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
     cardHum.classList.add('bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-10')
     
     cardHum.innerHTML = `
-      <h3 class="text-onSurfaceVariant text-lg md:text-xl">Humidity</h3>
+      <h3 class="text-onSurfaceVariant text-xl">Humidity</h3>
       <div class="flex items-center justify-between gap-4 xl:justify-between">
         <span class="m-icon">humidity_percentage</span>
 
@@ -198,7 +198,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
     cardPre.classList.add('bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-10')
 
     cardPre.innerHTML = `
-      <h3 class="text-onSurfaceVariant text-lg md:text-xl">Pressure</h3>
+      <h3 class="text-onSurfaceVariant text-xl">Pressure</h3>
       <div class="flex items-center justify-between gap-4">
         <span class="m-icon">airwave</span>
 
@@ -215,7 +215,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
     cardVis.classList.add('bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-10')
 
     cardVis.innerHTML = `
-      <h3 class="text-onSurfaceVariant text-lg md:text-xl">Visibility</h3>
+      <h3 class="text-onSurfaceVariant text-xl">Visibility</h3>
       <div class="flex items-center justify-between gap-4">
         <span class="m-icon">visibility</span>
 
@@ -231,7 +231,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
     cardFeels.classList.add('bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-10')
 
     cardFeels.innerHTML = `
-      <h3 class="text-onSurfaceVariant text-lg md:text-xl">Feels Like</h3>
+      <h3 class="text-onSurfaceVariant text-xl">Feels Like</h3>
       <div class="flex items-center justify-between gap-4">
         <span class="m-icon">thermostat</span>
 
@@ -320,21 +320,21 @@ const getWeatherData = (latitude: string, longitude: string) => {
                 <div class="flex items-center justify-between">
                   <span class="m-icon">air</span>
                   <ul class="flex items-center flex-wrap flex-grow gap-y-2 py-2 px-1 lg:flex-nowrap">
-                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
-                      <p class="text-lg md:text-4xl">${pm2_5.toPrecision(3)}</p>
-                      <p class="text-lg text-onSurfaceVariant">PM<sub>2.5</sub></p>
+                    <li class="flex w-1/2 space-x-1 justify-end md:items-end md:flex-col-reverse md:space-x-0">
+                      <p class="text-xl md:text-4xl">${pm2_5.toPrecision(3)}</p>
+                      <p class="text-xl text-onSurfaceVariant">PM<sub>2.5</sub></p>
                     </li>
-                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
-                      <p class="text-lg md:text-4xl">${so2.toPrecision(3)}</p>
-                      <p class="text-lg text-onSurfaceVariant ">SO<sub>2</sub></p>
+                    <li class="flex w-1/2 space-x-1 justify-end md:items-end md:flex-col-reverse md:space-x-0">
+                      <p class="text-xl md:text-4xl">${so2.toPrecision(3)}</p>
+                      <p class="text-xl text-onSurfaceVariant ">SO<sub>2</sub></p>
                     </li>
-                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
-                      <p class="text-lg md:text-4xl">${no2.toPrecision(3)}</p>
-                      <p class="text-lg text-onSurfaceVariant">NO<sub>2</sub></p>
+                    <li class="flex w-1/2 space-x-1 justify-end md:items-end md:flex-col-reverse md:space-x-0">
+                      <p class="text-xl md:text-4xl">${no2.toPrecision(3)}</p>
+                      <p class="text-xl text-onSurfaceVariant">NO<sub>2</sub></p>
                     </li>
-                    <li class="flex w-1/2 justify-end md:items-end md:flex-col-reverse">
-                      <p class="text-lg md:text-4xl">${o3.toPrecision(3)}</p>
-                      <p class="text-lg text-onSurfaceVariant">O<sub>3</sub></p>
+                    <li class="flex w-1/2 space-x-1 justify-end md:items-end md:flex-col-reverse md:space-x-0">
+                      <p class="text-xl md:text-4xl">${o3.toPrecision(3)}</p>
+                      <p class="text-xl text-onSurfaceVariant">O<sub>3</sub></p>
                     </li>
                   </ul>
                 </div>
@@ -411,10 +411,7 @@ goHomeBtn.addEventListener('click', hideError404)
  */
 import logoImg from'./assets/weather-icons/03d.png'
 import o1d from './assets/weather-icons/01d.png'
-import o4d from './assets/weather-icons/04d.png'
-import o1n from './assets/weather-icons/01n.png'
-import o2n from './assets/weather-icons/02n.png'
-import o9n from './assets/weather-icons/09n.png'
+
 import { AirPollutionData } from './interfaces/AirPollutionData'
 
 const logo = document.getElementById('logo') as HTMLImageElement
@@ -428,8 +425,8 @@ const forecast3 = document.getElementById('o3n') as HTMLImageElement
 const forecast4 = document.getElementById('o4n') as HTMLImageElement
 const forecast5 = document.getElementById('o5n') as HTMLImageElement
 
-forecast1.src = o1n
-forecast2.src = o2n
-forecast3.src = o1d
-forecast4.src = o4d
-forecast5.src = o9n
+forecast1.src = logoImg
+forecast2.src = logoImg
+forecast3.src = logoImg
+forecast4.src = logoImg
+forecast5.src = logoImg
