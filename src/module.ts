@@ -5,7 +5,8 @@ export const weekDayNames: string[] = [
   'Wednesday',
   'Thursday',
   'Friday',
-  'Saturday'
+  'Saturday',
+  'Sunday'
 ]
 
 export const monthNames: string[] = [

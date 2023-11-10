@@ -273,8 +273,9 @@ const getWeatherData = (latitude: string, longitude: string) => {
             <span class="text-xl">${parseInt(temp_max)}&deg;<sup>c</sup></span>
           </div>
           <p class="text-onSurfaceVariant text-lg ">${date.getDate()} ${module.monthNames[date.getUTCMonth()]}</p>
-          <p class="text-onSurfaceVariant text-lg ">${module.weekDayNames[date.getUTCDay()]}</p>
+          <p class="text-onSurfaceVariant text-lg ">${module.weekDayNames[date.getUTCDay() + 1]}</p>
         `
+
         const image = document.createElement('img')
         image.alt = description
         image.height = 36
@@ -310,7 +311,6 @@ const getWeatherData = (latitude: string, longitude: string) => {
         components: { no2, o3, so2, pm2_5 }
       }] = airPollution.list
 
-      console.log(pm2_5)
       const cardAir = document.createElement('div')
       cardAir.classList.add('relative', 'bg-blackAlpha10', 'p-3', 'space-y-3', 'lg:py-16')
 
