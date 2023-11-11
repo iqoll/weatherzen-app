@@ -8,6 +8,16 @@ export const weekDayNames: string[] = [
   'Sunday'
 ]
 
+export const weekDayNames2: string[] = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+]
+
 export const monthNames: string[] = [
   'Jan',
   'Feb',
@@ -35,6 +45,7 @@ export const getDate: Function = (dateUnix: number, timezone: number) => {
   const weekDayName: string = weekDayNames[date.getUTCDay() - 1]
   const monthName: string = monthNames[date.getUTCMonth()] 
   
+  if(weekDayName === undefined) return `Sunday ${date.getUTCDate()}, ${monthName}`
   return `${weekDayName} ${date.getUTCDate()}, ${monthName}`
 }
 

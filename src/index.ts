@@ -6,7 +6,11 @@ import { CurrentWeatherData } from './interfaces/CurrentWeatherData'
 import { Coordinates } from './interfaces/Coordinates'
 import { LocationData } from './interfaces/LocationData'
 import { ForecastData } from './interfaces/ForecastData'
+import { AirPollutionData } from './interfaces/AirPollutionData'
 
+
+// Import all files from the ./assets/weather-icons directory
+const icons = require.context('./assets/weather-icons', false, /\.(png)$/);
 
 /**
  * UTILITY FUNCTION
@@ -121,13 +125,9 @@ const getWeatherData = (latitude: string, longitude: string) => {
     image.width = 64
     image.height = 64
     
-    import(`./assets/weather-icons/${icon}.png`)
-      .then((img) => {
-        image.src = img.default
-      })
-      .catch((error) => {
-        console.error('Error loading image:', error)
-      })
+    const iconPath = `./${icon}.png`
+    const currIcon = icons(iconPath)
+    image.src = currIcon
 
     const imgParent = card.querySelector('[parent-image]')
     if(imgParent) {
@@ -264,7 +264,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
         } = forecastList[i]
         const [{description, icon}] = weather
         const date = new Date(dt_txt)
-        console.log(dt_txt, date, date.getUTCDay())
+        console.log(date, date.getDate() + 1)
 
         const li = document.createElement('li')
         li.classList.add('flex', 'justify-between', 'items-center')
@@ -274,7 +274,7 @@ const getWeatherData = (latitude: string, longitude: string) => {
             <span class="text-xl">${parseInt(temp_max)}&deg;<sup>c</sup></span>
           </div>
           <p class="text-onSurfaceVariant text-lg ">${date.getDate()} ${module.monthNames[date.getUTCMonth()]}</p>
-          <p class="text-onSurfaceVariant text-lg ">${module.weekDayNames[date.getUTCDay()]}</p>
+          <p class="text-onSurfaceVariant text-lg ">${module.weekDayNames2[date.getUTCDay()]}</p>
         `
 
         const image = document.createElement('img')
@@ -282,13 +282,9 @@ const getWeatherData = (latitude: string, longitude: string) => {
         image.height = 36
         image.width = 36
 
-        import(`./assets/weather-icons/${icon}.png`)
-          .then((img) => {
-          image.src = img.default
-        })
-          .catch((error) => {
-          console.error('Error loading image:', error)
-        })
+        const iconPath = `./${icon}.png`
+        const foreIcon = icons(iconPath)
+        image.src = foreIcon
 
         const forecastParentImg = li.querySelector('[forecast-image-parent]')
 
@@ -410,15 +406,13 @@ goHomeBtn.addEventListener('click', hideError404)
 /**
  * Assets for all the default logo that are used
  */
-import logoImg from'./assets/weather-icons/03d.png'
-import o1d from './assets/weather-icons/01d.png'
+const iconPath1 = './03d.png'
+const iconPath2 = './01d.png'
 
-import { AirPollutionData } from './interfaces/AirPollutionData'
-
+const icon1 = icons(iconPath1)
+const icon2 = icons(iconPath2)
 const logo = document.getElementById('logo') as HTMLImageElement
-logo.src = logoImg
 const weatherIcon = document.getElementById('ocloud') as HTMLImageElement
-weatherIcon.src = o1d
 
 const forecast1 = document.getElementById('o1n') as HTMLImageElement
 const forecast2 = document.getElementById('o2n') as HTMLImageElement
@@ -426,8 +420,10 @@ const forecast3 = document.getElementById('o3n') as HTMLImageElement
 const forecast4 = document.getElementById('o4n') as HTMLImageElement
 const forecast5 = document.getElementById('o5n') as HTMLImageElement
 
-forecast1.src = logoImg
-forecast2.src = logoImg
-forecast3.src = logoImg
-forecast4.src = logoImg
-forecast5.src = logoImg
+logo.src = icon1
+weatherIcon.src = icon2
+forecast1.src = icon1
+forecast2.src = icon1
+forecast3.src = icon1
+forecast4.src = icon1
+forecast5.src = icon1
