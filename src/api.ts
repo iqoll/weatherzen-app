@@ -2,7 +2,6 @@ import axios from "axios"
 
 const apiKey: string = process.env.API_KEY || ''
 
-console.log('API key:', apiKey)
 export const fetchData = async (URL: string, callback: Function) => {
   await axios.get(`${URL}&appid=${apiKey}`)
   .then(response => callback(response.data))
