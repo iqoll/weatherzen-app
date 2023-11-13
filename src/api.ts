@@ -25,6 +25,6 @@ export const url = {
   },
   // Search query e.g.: "London", "Jakarta"
   geo(query: string) {
-    return `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1`
+    return `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1`
   }
 }
