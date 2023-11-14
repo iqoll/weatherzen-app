@@ -1,7 +1,7 @@
 import axios from "axios"
-import API_KEY from './apikey'
+require('dotenv').config()
 
-const apiKey: string = API_KEY
+const apiKey: string = process.env.API_KEY || ''
 
 console.log('Api Key: ', process.env.API_KEY)
 

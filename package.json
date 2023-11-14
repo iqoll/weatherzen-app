@@ -6,7 +6,6 @@
   "scripts": {
     "serve": "webpack-dev-server",
     "build:dev": "webpack build --config webpack.config.js",
-    "prebuild": "cd public && echo -e \"const API_KEY = 'fd68132fc30765eba5fb8c1f92d2eab5';\\n\\nexport default API_KEY;\" > apikey.js",
     "build:prod": "webpack build --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
