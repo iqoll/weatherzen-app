@@ -7,7 +7,7 @@ Welcome to WeatherZen, your personalized weather application built with Webpack 
 1. **Clone the repository:**
 
     ```bash
-    git clone <repository-url>
+    `git clone https://github.com/iqoll/weatherzen-app`
     ```
 
 2. **Install Dependencies:**
