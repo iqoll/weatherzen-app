@@ -1,5 +1,4 @@
 import axios from "axios"
-require('dotenv').config()
 
 const apiKey: string = process.env.API_KEY || ''
 

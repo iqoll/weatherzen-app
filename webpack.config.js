@@ -1,6 +1,5 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
 const Dotenv = require('dotenv-webpack')
 
 module.exports = {
@@ -51,10 +50,6 @@ module.exports = {
       template: 'src/template.html',
       favicon: 'src/assets/favicon.ico'
     }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        API_KEY: JSON.stringify(process.env.API_KEY)
-      } 
-    })
+    new Dotenv()
   ]
 } 
