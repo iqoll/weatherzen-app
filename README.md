@@ -43,7 +43,23 @@ Welcome to WeatherZen, your personalized weather application built with Webpack 
 - **tsconfig.json:** TypeScript configuration.
 
 ## How to Use
+
 1. Open **'src/template.html'** and customize the HTML structure as needed.
 2. Explore and modify styles in **`src/styles`** for custom styling.
 3. Adapt the TypeScript code in **`src/index.ts`** for additional functionality.
 4. Run **`npm run build`** to create a production-ready build.
+
+## Features
+
+- **Webpack:** Bundling and Building.
+- **Typescript:** Typed superset of JavaScript.
+- **Tailwind CSS:** Utility-first CSS framework.
+- **dotenv-webpack:** Load environment variables.
+
+## Deployment
+
+Deploy your WeatherZen App to platforms like Netlify or Vercel by configuring environment variables in your deployment settings.
+
+## Author
+- Muhammad Haiqal
+Feel free to reach out if you have any questions or improvements for WeatherZen. Happy coding!
