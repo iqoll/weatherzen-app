@@ -39,5 +39,11 @@ Welcome to WeatherZen, your personalized weather application built with Webpack 
   - **styles:** Stylesheets and CSS files.
   - **template.html:** HTML template used by HtmlWebpackPlugin.
 
-- **webpack.config.js:** Webpack configu
+- **webpack.config.js:** Webpack configuration for development.
+- **tsconfig.json:** TypeScript configuration.
 
+## How to Use
+1. Open **'src/template.html'** and customize the HTML structure as needed.
+2. Explore and modify styles in **`src/styles`** for custom styling.
+3. Adapt the TypeScript code in **`src/index.ts`** for additional functionality.
+4. Run **`npm run build`** to create a production-ready build.
