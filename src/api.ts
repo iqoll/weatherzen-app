@@ -1,8 +1,9 @@
 import axios from "axios"
 
-const apiKey: string = process.env.API_KEY || ''
+const apiKey = process.env.API_KEY
 
 console.log('Api Key: ', process.env.API_KEY)
+console.log(process.env)
 
 export const fetchData = async (URL: string, callback: Function) => {
   await axios.get(`${URL}&appid=${apiKey}`)
